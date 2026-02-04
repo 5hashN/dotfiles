@@ -1,0 +1,89 @@
+#!/bin/sh
+
+# ./pomo <work> <short_break> <long_break>
+
+WORK_MIN=${1:-25}
+SHORT_MIN=${2:-5}
+LONG_MIN=${3:-30}
+
+WORK_TIME=$((WORK_MIN * 60))
+SHORT_BREAK=$((SHORT_MIN * 60))
+LONG_BREAK=$((LONG_MIN * 60))
+
+sessions=0
+
+tput civis
+
+cleanup() {
+    tput cnorm
+    printf "\nStopping. You completed %d session(s).\n" "$sessions"
+    trap - INT TERM HUP EXIT
+    exit 0
+}
+trap cleanup INT TERM HUP EXIT
+
+notify() {
+    title="$1"
+    msg="$2"
+    # Linux
+    if command -v notify-send >/dev/null 2>&1; then
+        notify-send "$title" "$msg"
+    # macOS
+    elif command -v osascript >/dev/null 2>&1; then
+        osascript -e "display notification \"$msg\" with title \"$title\" sound name \"Glass\""
+    else
+        printf "\a"
+    fi
+}
+
+visual_timer() {
+    total="$1"
+    label="$2"
+    remaining="$total"
+    width=25
+
+    while [ "$remaining" -gt 0 ]; do
+        min=$((remaining / 60))
+        sec=$((remaining % 60))
+
+        elapsed=$((total - remaining))
+        filled=$(( (elapsed * width) / total ))
+
+        bar="["
+        i=0
+        while [ "$i" -lt "$width" ]; do
+            if [ "$i" -lt "$filled" ]; then
+                bar="${bar}#"
+            else
+                bar="${bar}-"
+            fi
+            i=$((i + 1))
+        done
+        bar="${bar}]"
+
+        printf "\r%s %s %02d:%02d " "$label" "$bar" "$min" "$sec"
+
+        sleep 1
+        remaining=$((remaining - 1))
+    done
+
+    printf "\r%s %s 00:00 \n" "$label" "$bar"
+}
+
+printf "Starting Pomodoro: %dm work / %dm short / %dm long\n" \
+    "$WORK_MIN" "$SHORT_MIN" "$LONG_MIN"
+
+while true; do
+    notify "Pomodoro" "Time to focus!"
+    visual_timer "$WORK_TIME" "Focusing... "
+
+    sessions=$((sessions + 1))
+
+    if [ $((sessions % 4)) -eq 0 ]; then
+        notify "Pomodoro" "Great job! Take a long break."
+        visual_timer "$LONG_BREAK" "Long Break: "
+    else
+        notify "Pomodoro" "Take a short break."
+        visual_timer "$SHORT_BREAK" "Resting:  "
+    fi
+done

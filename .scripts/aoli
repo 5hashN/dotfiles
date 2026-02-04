@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Usage: ./aoli RRGGBB RRGGBB ...
+# Example: ./aoli FF5733 00AAFF 123456
+
+WIDTH="512"
+HEIGHT="512"
+DPI="72"
+
+if [ "$#" -eq 0 ]; then
+    echo "Usage: $0 RRGGBB RRGGBB ..."
+    exit 1
+fi
+
+for HEX in "$@"; do
+    COLOR="#$HEX"
+    UPPER_HEX=$(echo "$HEX" | tr '[:lower:]' '[:upper:]')
+    OUTFILE="${UPPER_HEX}.png"
+
+    echo "Creating $OUTFILE with color $COLOR..."
+
+    magick -size "${WIDTH}x${HEIGHT}" canvas:"$COLOR" -units PixelsPerInch -density "$DPI" "$OUTFILE"
+
+    echo "✔ Created: $OUTFILE (${WIDTH}x${HEIGHT}, ${DPI} DPI)"
+done
+
