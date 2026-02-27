@@ -28,3 +28,5 @@ cp ~/.condarc ~/.dotfs/.
 cp ~/.hushlogin ~/.dotfs/.
 
 cp -r ~/.scripts ~/.dotfs/.
+
+cd ~/.dotfs

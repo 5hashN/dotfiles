@@ -4,17 +4,26 @@ add_newline = false
 command_timeout = 18000000
 
 [battery]
-full_symbol = "󰁹"
-charging_symbol = "󰂄"
-discharging_symbol = "󰂃"
+full_symbol = '󰁹'
+charging_symbol = '󰂄'
+discharging_symbol = '󰂃'
 
 [c]
-detect_extensions = ["c", "h", "cu", "cuh"]
+detect_extensions = ['c', 'h']
 format = "[$symbol($version(-$name))]($style) "
 
+[cpp]
+detect_extensions = ['cpp', 'cc', 'cxx', 'c++', 'hpp', 'hh', 'hxx', 'h++', 'tcc']
+format = "[$symbol($version(-$name))]($style) "
+
+[cmake]
+detect_files = ['CMakeLists.txt', 'CMakeCache.txt']
+symbol = '△ '
+format = "[$symbol($version)]($style) "
+
 [character]
-success_symbol = "[󰅂](bold green)"
-error_symbol = "[󰅂](bold red)"
+success_symbol = '[󰅂](bold green)'
+error_symbol = '[󰅂](bold red)'
 
 [cmd_duration]
 min_time = 1000
@@ -26,67 +35,59 @@ format = "[$path]($style)[$read_only]($read_only_style) "
 fish_style_pwd_dir_length = 0
 
 [git_branch]
-symbol = " "
+symbol = ' '
 format = "[$symbol$branch(:$remote_branch)]($style) "
 
 [golang]
-symbol = " "
+symbol = ' '
 
 [hostname]
 ssh_only = true
 
 [hg_branch]
-symbol = " "
+symbol = ' '
 
 [java]
-symbol = " "
+symbol = ' '
 
 [julia]
-symbol = " "
+symbol = ' '
 
 [line_break]
 disabled = true
 
 [lua]
-symbol = "󰽧 "
+symbol = '󰽧 '
 format = "[$symbol($version)]($style) "
 
 [memory_usage]
-symbol = "󰍛"
+symbol = '󰍛'
 
 [nodejs]
-symbol = " "
+symbol = ' '
 disabled = true
 
 [package]
-symbol = " "
-
-[php]
-symbol = " "
+disabled = true
 
 [conda]
-symbol = " "
-format = "[${symbol}(${environment})]($style) "
-style = "bold green"
+symbol = ' '
+format = "[${environment}]($style) "
+style = 'bold green'
 ignore_base = true
 
-[pixi]
-symbol = " "
-format = "[${symbol}(${environment})]($style) "
-style = "bold green"
-
 [python]
-symbol = " "
+symbol = ' '
 format = "[${symbol}(${version})(($virtualenv))]($style) "
-style = "bold yellow"
-python_binary = ["python3"]
-detect_extensions = ["py"]
-version_format = "v${raw}"
+style = 'bold green'
+python_binary = ['python3']
+detect_extensions = ['py']
+version_format = 'v${raw}'
 
 [ruby]
-symbol = " "
+symbol = ' '
 disabled = true
 
 [rust]
-symbol = " "
+symbol = ' '
 

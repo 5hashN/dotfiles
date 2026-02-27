@@ -70,6 +70,8 @@ alias scp='noglob scp'
 
 alias dotfs='/usr/bin/git --git-dir=$HOME/.dotfs/ --work-tree=$HOME'
 
+alias miba='micromamba'
+
 if [ -d "/Applications/Media/IINA.app/Contents/MacOS" ]; then
     alias iina-cli='/Applications/Media/IINA.app/Contents/MacOS/iina-cli'
 fi
@@ -107,22 +109,29 @@ cowcat () {
 }
 
 ################################################################################
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
-alias pe_fluid='conda activate ~/Documents/hobe/generative/fluid/.env'
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'micromamba shell init' !!
+
+export MAMBA_EXE='/Users/shashwat/.local/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/Users/shashwat/micromamba';
+export MAMBA_CHANGEPS1=no
+
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias micromamba="$MAMBA_EXE"  # Fallback on help from micromamba activate
+fi
+
+unset __mamba_setup
+
+# <<< mamba initialize <<<
+
+export CONDA_DEFAULT_ENV=$MAMBA_DEFAULT_ENV
+alias pe_fluid='micromamba activate ~/Documents/hobe/generative/fluid/.env'
+
 ################################################################################
 
 [[ -f "${ZSH}/psnl.zsh" ]] && source "${ZSH}/psnl.zsh"

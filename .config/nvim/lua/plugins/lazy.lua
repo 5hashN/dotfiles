@@ -101,7 +101,15 @@ local plugins = {
     { "rmagatti/alternate-toggler", event = "BufReadPost" },
     { "vim-scripts/LargeFile" },
 
-    { "alex-popov-tech/store.nvim" , dependencies = { "OXY2DEV/markview.nvim" }, cmd = "Store" },
+    -- { "alex-popov-tech/store.nvim" , dependencies = { "OXY2DEV/markview.nvim" }, cmd = "Store" },
+
+    { "5hashN/flock.nvim",
+        opts = {
+            num_boids = 40,
+            timer_interval = 50,
+            visual_char = ">",
+        }
+    },
 
     -- { "Eandrju/cellular-automaton.nvim", enabled = true },
 

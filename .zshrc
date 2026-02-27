@@ -6,4 +6,3 @@
 
 [[ -f "${HOME}/.config/zsh/init.zsh" ]] && source "${HOME}/.config/zsh/init.zsh"
 
-
