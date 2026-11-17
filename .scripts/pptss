@@ -1,0 +1,50 @@
+#!/bin/sh
+
+trap 'tput cnorm; exit' INT TERM
+tput civis
+
+if [ -n "$RANDOM" ]; then
+    range=$((RANDOM % 1 + 1))
+else
+    range=$(awk 'BEGIN {srand(); print int(rand()*10) + 5}')
+fi
+
+
+i=1
+while [ "$i" -le "$range" ]; do
+    j=1
+    while [ "$j" -le 12 ]; do
+        case "$j" in
+            1|5|11)   txt="      ({)          "; t=0.01 ;;
+            2|4|8|10) txt="       ()          "; t=0.01 ;;
+            3|9)      txt="        |          "; t=0.02 ;;
+            6|12)     txt="      ({})         "; t=0.02 ;;
+            7)        txt="       (})         "; t=0.01 ;;
+        esac
+
+        printf "\r%s" "$txt"
+
+        sleep_time=$(awk "BEGIN {print $t * $i}")
+        sleep "$sleep_time"
+
+        j=$((j + 1))
+    done
+    i=$((i + 1))
+done
+
+
+printf "\r                   "
+
+if [ -n "$RANDOM" ]; then
+    r=$RANDOM
+else
+    r=$(awk 'BEGIN {srand(); print int(rand()*100)}')
+fi
+
+if [ $((r % 2)) -eq 0 ]; then
+    printf "\r      (^^)\n"
+else
+    printf "\r      (xx)\n"
+fi
+
+tput cnorm

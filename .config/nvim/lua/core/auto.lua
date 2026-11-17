@@ -11,12 +11,20 @@ augroup('YankHighlight', { clear = true })
 autocmd('TextYankPost', {
     group = 'YankHighlight',
     callback = function()
-        vim.highlight.on_yank({ higroup = 'IncSearch', timeout = '500' })
+        vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 500 })
     end
 })
 
+local clean_group = augroup('CleanOnSave', { clear = true })
 autocmd('BufWritePre', {
-    pattern = '',
-    command = ':%s/\\s\\+$//e'
+    group = clean_group,
+    pattern = '*',
+    callback = function()
+        if vim.bo.filetype ~= 'markdown' and vim.bo.buftype == '' then
+            local view = vim.fn.winsaveview()
+            vim.cmd([[%s/\s\+$//e]])
+            vim.fn.winrestview(view)
+        end
+    end,
 })
 

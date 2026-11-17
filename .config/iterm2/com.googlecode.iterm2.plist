@@ -23,7 +23,7 @@
 	<key>AiMaxTokens</key>
 	<integer>400000</integer>
 	<key>AiModel</key>
-	<string>gpt-5.1</string>
+	<string>gpt-5.2</string>
 	<key>AiResponseMaxTokens</key>
 	<integer>128000</integer>
 	<key>AitermURL</key>
@@ -51,7 +51,7 @@
 	<key>Default Bookmark Guid</key>
 	<string>94D20EC8-F2C2-453C-B65A-23F2E2F9003C</string>
 	<key>Default Browser Profile Guid</key>
-	<string>94D20EC8-F2C2-453C-B65A-23F2E2F9003C</string>
+	<string>6AF7639A-FE86-4628-B501-D2428F2110AF</string>
 	<key>Default Toolbelt Width</key>
 	<integer>229</integer>
 	<key>DeleteProfile_SilenceUntil</key>
@@ -69,7 +69,7 @@
 	<key>DoubleClickPerformsSmartSelection</key>
 	<true/>
 	<key>EnableAPIServer</key>
-	<false/>
+	<true/>
 	<key>EnableProxyIcon</key>
 	<false/>
 	<key>FlashTabBarInFullscreen</key>
@@ -1897,9 +1897,9 @@
 	<key>TabsHaveCloseButton</key>
 	<true/>
 	<key>TerminalMargin</key>
-	<integer>16</integer>
+	<integer>18</integer>
 	<key>TerminalVMargin</key>
-	<integer>16</integer>
+	<integer>14</integer>
 	<key>ThreeFingerEmulates</key>
 	<false/>
 	<key>TimeBetweenTips</key>
@@ -1918,12 +1918,16 @@
 	<true/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
+	<key>WebKitAdblockEnabled</key>
+	<true/>
 	<key>Window Arrangements</key>
 	<dict/>
 	<key>WindowNumber</key>
 	<false/>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
+	<key>com.apple.WebPrivacy.ResourceMonitorURLsVersion</key>
+	<string>qrsAAAGXnXBrwGxMO6s=</string>
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewPreferredModeKey</key>

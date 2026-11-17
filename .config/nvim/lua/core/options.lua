@@ -1,25 +1,16 @@
 local g = vim.g
 local opt = vim.opt
 
-vim.cmd [[
-    syntax enable
-    syntax on
-    filetype plugin indent on
-]]
-
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 
-opt.encoding = 'utf-8'
-opt.backspace = 'indent,eol,start'
+opt.backspace = "indent,eol,start"
 opt.startofline = true
-
-opt.compatible = false
 opt.autoindent = true
 opt.smartindent = true
 opt.modeline = false
 
-opt.showmatch  = true
+opt.showmatch = true
 
 opt.expandtab = true
 opt.tabstop = 4
@@ -38,7 +29,6 @@ opt.ruler = true
 
 -- highlight searching
 opt.incsearch = true
-opt.showmatch = true
 opt.hlsearch = true
 opt.ignorecase = true
 opt.smartcase = true
@@ -47,7 +37,7 @@ opt.cursorline = true
 
 opt.wildmenu = true
 
-opt.inccommand = 'nosplit'
+opt.inccommand = "nosplit"
 
 opt.autoread = true
 -- opt.mouse = a
@@ -55,14 +45,14 @@ opt.autoread = true
 opt.showmode = false
 
 -- shell
-opt.shell = '/bin/zsh'
-g.python3_host_prog = '/opt/homebrew/Caskroom/miniconda/base/envs/wenv/bin/python3'
+opt.shell = "/bin/zsh"
+g.python3_host_prog = vim.fn.expand("~/miniconda3/envs/wenv/bin/python3")
 
-opt.background = dark
+opt.background = "dark"
 
 opt.termguicolors = true
 
-opt.foldmethod = 'indent'
+opt.foldmethod = "indent"
 opt.foldenable = true
 opt.foldlevel = 99
 

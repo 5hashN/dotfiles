@@ -49,7 +49,7 @@ export MPICC=$(which mpicc)
 # export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 #
-########## Aliases #############################################################
+########## aliases #############################################################
 
 alias nv='nvim'
 alias vi='nvim'
@@ -70,11 +70,12 @@ alias scp='noglob scp'
 
 alias dotfs='/usr/bin/git --git-dir=$HOME/.dotfs/ --work-tree=$HOME'
 
-alias miba='micromamba'
-
 if [ -d "/Applications/Media/IINA.app/Contents/MacOS" ]; then
     alias iina-cli='/Applications/Media/IINA.app/Contents/MacOS/iina-cli'
 fi
+
+
+alias ffmpreg='ffmpeg'
 
 ########## functions ###########################################################
 
@@ -110,27 +111,20 @@ cowcat () {
 
 ################################################################################
 
-# >>> mamba initialize >>>
-# !! Contents within this block are managed by 'micromamba shell init' !!
-
-export MAMBA_EXE='/Users/shashwat/.local/bin/micromamba';
-export MAMBA_ROOT_PREFIX='/Users/shashwat/micromamba';
-export MAMBA_CHANGEPS1=no
-
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/shashwat/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
+    eval "$__conda_setup"
 else
-    alias micromamba="$MAMBA_EXE"  # Fallback on help from micromamba activate
+    if [ -f "/Users/shashwat/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/shashwat/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/shashwat/miniconda3/bin:$PATH"
+    fi
 fi
-
-unset __mamba_setup
-
-# <<< mamba initialize <<<
-
-export CONDA_DEFAULT_ENV=$MAMBA_DEFAULT_ENV
-alias pe_fluid='micromamba activate ~/Documents/hobe/generative/fluid/.env'
+unset __conda_setup
+# <<< conda initialize <<<
 
 ################################################################################
 
@@ -150,3 +144,4 @@ eval "$(zoxide init zsh)"
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ################################################################################
+

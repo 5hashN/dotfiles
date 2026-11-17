@@ -63,7 +63,8 @@ local plugins = {
                          "honza/vim-snippets",
                          "kdheepak/cmp-latex-symbols",
                          "nat-418/cmp-color-names.nvim",
-                        }, },
+                        },
+    },
 
     -- { "saghen/blink.nvim", version = "*",
     --     dependencies = { "neovim/nvim-lspconfig",

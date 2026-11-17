@@ -6,6 +6,5 @@
 
 vim.g.mapleader = ' '
 
-pcall(require, 'core'   )
-pcall(require, 'plugins')
+pcall(require, 'core')
 
