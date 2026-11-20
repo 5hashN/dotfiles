@@ -51,5 +51,24 @@ return {
                 },
             }
         end
-    }
+    },
+    {
+        "sindrets/diffview.nvim",
+        cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory" },
+        keys = {
+            { "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "Git Diffview Open" },
+            { "<leader>gD", "<cmd>DiffviewClose<CR>", desc = "Git Diffview Close" },
+            { "<leader>gh", "<cmd>DiffviewFileHistory %<CR>", desc = "Git File History" },
+        },
+        opts = {},
+    },
+    {
+        "akinsho/git-conflict.nvim",
+        version = "*",
+        event = "BufReadPre",
+        opts = {
+            default_mappings = true,
+            disable_diagnostics = true,
+        },
+    },
 }

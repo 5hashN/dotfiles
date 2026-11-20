@@ -35,9 +35,13 @@ return {
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
                 callback = function(event)
-                    local map = function(keys, func, desc, mode)
+                    local map = function(keys, func, desc, mode, extra_opts)
                         mode = mode or "n"
-                        vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+                        local opts = { buffer = event.buf, desc = "LSP: " .. desc }
+                        if extra_opts then
+                            opts = vim.tbl_extend("force", opts, extra_opts)
+                        end
+                        vim.keymap.set(mode, keys, func, opts)
                     end
 
                     map("gd", vim.lsp.buf.definition, "Go to Definition")
@@ -45,7 +49,9 @@ return {
                     map("gi", vim.lsp.buf.implementation, "Go to Implementation")
                     map("gr", vim.lsp.buf.references, "Go to References")
                     map("K", vim.lsp.buf.hover, "Hover Documentation")
-                    map("<leader>rn", vim.lsp.buf.rename, "Rename Symbol")
+                    map("<leader>rn", function()
+                        return ":IncRename " .. vim.fn.expand("<cword>")
+                    end, "Rename Symbol (Live)", "n", { expr = true })
                     map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
 
                     map("<leader>d", vim.diagnostic.open_float, "Line Diagnostics")
