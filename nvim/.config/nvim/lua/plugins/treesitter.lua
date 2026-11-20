@@ -5,9 +5,37 @@ return {
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
+		init = function()
+			local query = vim.treesitter.query
+			local wrap_handler = function(handler)
+				return function(match, pattern, source, pred, metadata)
+					local proxy = setmetatable({}, {
+						__index = function(_, k)
+							local node = match[k]
+							if type(node) == "table" and not node.range then
+								return node[1]
+							end
+							return node
+						end,
+						__newindex = match,
+					})
+					return handler(proxy, pattern, source, pred, metadata)
+				end
+			end
+
+			local orig_add_directive = query.add_directive
+			query.add_directive = function(name, handler, opts)
+				return orig_add_directive(name, wrap_handler(handler), opts)
+			end
+
+			local orig_add_predicate = query.add_predicate
+			query.add_predicate = function(name, handler, opts)
+				return orig_add_predicate(name, wrap_handler(handler), opts)
+			end
+		end,
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "c", "cpp", "python", "bash", "lua", "vim", "vimdoc", "query" },
+				ensure_installed = { "c", "cpp", "python", "bash", "lua", "rust", "make", "cmake", "markdown", "markdown_inline", "vim", "vimdoc", "query" },
 				sync_install = false,
 				auto_install = true,
 				ignore_install = { "latex" },

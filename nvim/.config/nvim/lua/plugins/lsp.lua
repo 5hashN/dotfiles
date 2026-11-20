@@ -62,6 +62,8 @@ return {
                     "clangd",
                     "pyright",
                     "neocmake",
+                    "rust_analyzer",
+                    "autotools_ls",
                     "texlab",
                     "bashls",
                     "lua_ls",
@@ -104,6 +106,22 @@ return {
                                         useLibraryCodeForTypes = true,
                                         diagnosticMode = "openFilesOnly",
                                         typeCheckingMode = "basic",
+                                    },
+                                },
+                            },
+                        })
+                    end,
+
+                    ["rust_analyzer"] = function()
+                        lspconfig.rust_analyzer.setup({
+                            capabilities = capabilities,
+                            settings = {
+                                ["rust-analyzer"] = {
+                                    cargo = {
+                                        allFeatures = true,
+                                    },
+                                    checkOnSave = {
+                                        command = "clippy",
                                     },
                                 },
                             },
