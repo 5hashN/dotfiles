@@ -57,3 +57,5 @@ opt.foldenable = true
 opt.foldlevel = 99
 
 opt.conceallevel = 2
+
+opt.exrc = true
