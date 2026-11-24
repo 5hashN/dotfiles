@@ -102,6 +102,14 @@ export NNN_USE_EDITOR=1
 #export NNN_FIFO=/tmp/nnn.fifo
 export NNN_PLUG='p:preview-tui;z:autojump'
 
+y () {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    command yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd < "$tmp"
+    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
+}
+
 cowcat () {
     if [ -x /usr/local/bin/cowsay -a -x /usr/local/bin/fortune -a -x /usr/local/bin/lolcat ]; then
         fortune -a | cowsay | lolcat -t

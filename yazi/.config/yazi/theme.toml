@@ -1,0 +1,35 @@
+[flavor]
+dark = "catppuccin-mocha"
+
+[mgr]
+cwd           = { fg = "#89b4fa", bold = true }
+hovered       = { bg = "#1e1e2e", bold = true }
+border_symbol = "│"
+border_style  = { fg = "#313244" }
+
+[tabs]
+active   = { fg = "#090910", bg = "#89b4fa", bold = true }
+inactive = { fg = "#89b4fa", bg = "#090914" }
+
+[mode]
+normal_main = { fg = "#090910", bg = "#89b4fa", bold = true }
+normal_alt  = { fg = "#89b4fa", bg = "#090914" }
+select_main = { fg = "#090910", bg = "#94e2d5", bold = true }
+select_alt  = { fg = "#94e2d5", bg = "#090914" }
+unset_main  = { fg = "#090910", bg = "#f2cdcd", bold = true }
+unset_alt   = { fg = "#f2cdcd", bg = "#090914" }
+
+[status]
+overall   = { fg = "#cdd6f4", bg = "#090912" }
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+
+[which]
+separator = " -> "
+
+[icon]
+globs = []
+dirs  = []
+files = []
+exts  = []
+conds = []

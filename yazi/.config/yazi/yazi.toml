@@ -1,0 +1,10 @@
+[mgr]
+ratio          = [0, 1, 0]
+sort_by        = "alphabetical"
+sort_sensitive = false
+sort_reverse   = false
+sort_dir_first = true
+linemode       = "size_and_mtime"
+show_hidden    = false
+show_symlink   = true
+scrolloff      = 5
