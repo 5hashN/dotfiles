@@ -52,7 +52,7 @@ return {
                     map("<leader>rn", function()
                         return ":IncRename " .. vim.fn.expand("<cword>")
                     end, "Rename Symbol (Live)", "n", { expr = true })
-                    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
+                    map("<leader>ca", vim.lsp.buf.code_action, "Code Action", { "n", "v" })
 
                     map("<leader>d", vim.diagnostic.open_float, "Line Diagnostics")
                     map("[d", vim.diagnostic.goto_prev, "Previous Diagnostic")
