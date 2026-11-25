@@ -3,9 +3,14 @@ dark = "catppuccin-mocha"
 
 [mgr]
 cwd           = { fg = "#89b4fa", bold = true }
-hovered       = { bg = "#1e1e2e", bold = true }
 border_symbol = "│"
 border_style  = { fg = "#313244" }
+
+[indicator]
+parent  = { reversed = true }
+current = {}
+preview = { underline = true }
+padding = { open = " ", close = " " }
 
 [tabs]
 active   = { fg = "#090910", bg = "#89b4fa", bold = true }
