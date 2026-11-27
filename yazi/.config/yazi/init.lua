@@ -66,3 +66,8 @@ function Entity:highlights()
 	end
 	return ui.Line(spans)
 end
+
+local orig_tab_new = Tab.new
+function Tab:new(area, tab)
+	return orig_tab_new(self, area:pad(ui.Pad(1, 0, 0, 0)), tab)
+end
