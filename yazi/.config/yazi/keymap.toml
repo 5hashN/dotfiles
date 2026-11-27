@@ -7,28 +7,3 @@ desc = "Toggle preview pane"
 on   = "M"
 run  = "plugin toggle-preview max"
 desc = "Maximize or hide preview pane"
-
-[[mgr.prepend_keymap]]
-on   = [ "b", "c" ]
-run  = "cd ~/Documents/acads/itk/mkv/code_bkps"
-desc = "Jump to code_bkps"
-
-[[mgr.prepend_keymap]]
-on   = [ "b", "d" ]
-run  = "cd ~/Documents/acads/itk/notes/daily"
-desc = "Jump to daily notes"
-
-[[mgr.prepend_keymap]]
-on   = [ "b", "p" ]
-run  = "cd ~/Documents/dump"
-desc = "Jump to dump (pmud)"
-
-[[mgr.prepend_keymap]]
-on   = [ "b", "s" ]
-run  = "cd ~/Documents/acads/itk/sim_data"
-desc = "Jump to sim_data"
-
-[[mgr.prepend_keymap]]
-on   = [ "b", "x" ]
-run  = "cd ~/Documents/acads/itk/mkv/ssh_drop"
-desc = "Jump to ssh_drop"

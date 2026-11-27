@@ -22,6 +22,7 @@ fi
 
 [ -d "/Applications/Media/calibre.app/Contents/MacOS" ] && export PATH="/Applications/Media/calibre.app/Contents/MacOS:$PATH"
 [ -d "/Applications/Media/SuperCollider.app/Contents/MacOS" ] && export PATH="/Applications/Media/SuperCollider.app/Contents/MacOS:$PATH"
+[ -d "/Applications/Obsidian.app/Contents/MacOS" ] && export PATH="/Applications/Obsidian.app/Contents/MacOS:$PATH"
 
 ########## nnn #################################################################
 
